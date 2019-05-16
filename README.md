@@ -1,24 +1,11 @@
-# README
+# Middle
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Middle is a clone of Medium.com, a site used by millions to express their knowledge of topics that may be of interest to others around the internet. Middle will seek to replicate Medium.com's styling, functionality, and structure to a greater or lesser extent. See the wiki for more information on the state shape and schema structure. There will be:
 
-Things you may want to cover:
+* User's who can sign in and sign out
 
-* Ruby version
+* Users will be able to write stories and share them with the greater Middle audience. 
 
-* System dependencies
+* Stories can have claps, somewhat like a "like" on other social sites.
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Stories can have comments, which will be written by other Users.
