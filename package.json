@@ -1,5 +1,39 @@
 {
   "name": "middle",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "lodash": "^4.17.11",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-redux": "^7.0.3",
+    "react-router-dom": "^5.0.0",
+    "redux": "^4.0.1",
+    "webpack": "^4.32.0",
+    "webpack-cli": "^3.3.2"
+  },
+  "description": "Middle is a clone of Medium.com, a site used by millions to express their knowledge of topics that may be of interest to others around the internet. Middle will seek to replicate Medium.com's styling, functionality, and structure to a greater or lesser extent. See the wiki for more information on the state shape and schema structure. There will be:",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ConleyPotter/Middle.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ConleyPotter/Middle/issues"
+  },
+  "homepage": "https://github.com/ConleyPotter/Middle#readme"
 }
