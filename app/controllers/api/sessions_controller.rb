@@ -9,6 +9,10 @@ class Api::SessionsController < ApplicationController
     end
   end
 
+  def show
+    @user = current_user
+  end
+
   def destroy
     if logged_in?
       logout
