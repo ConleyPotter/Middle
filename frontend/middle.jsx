@@ -1,11 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import * as SessionAPIUtil from './util/session_api_util'
+import configureStore from './store/store'
+import Root from './components/root'
+
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root');
-  window.signup = SessionAPIUtil.signup
-  window.login = SessionAPIUtil.login
-  window.logout = SessionAPIUtil.logout
-  ReactDOM.render(<h1>Welcome to Middle!</h1>, root);
+
+  // Testing
+  const store = configureStore()
+
+  window.getState = store.getState
+  window.store = store.dispatch
+
+  // React
+  ReactDOM.render(<Root store={store} />, root);
 })
