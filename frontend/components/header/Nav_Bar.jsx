@@ -7,10 +7,10 @@ class Navbar extends React.Component {
   }
 
   render() {
-    const { currentUserId, logout, openModal } = this.props;
-    const navMenu = currentUserId ? (
+    const { current_user_id, logout, openModal } = this.props;
+    const navMenu = Boolean(current_user_id) ? (
       <div className="nav-logged-in">
-        <Link to={`/users/${currentUserId}`} replace className="link">
+        <Link to={`/users/${current_user_id}`} replace className="link">
           Profile
         </Link>
         <a href="#" onClick={e => logout()} className="link">

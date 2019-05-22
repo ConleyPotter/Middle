@@ -5,7 +5,7 @@ class MainPage extends React.Component {
   render() {
     return (
       <div>
-        <h1>Medium</h1>
+        <h1>Middle</h1>
         <ul>
           <li>Featured Articles</li>
           <li>Your Articles</li>

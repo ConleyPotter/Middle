@@ -4,7 +4,7 @@ import NavBar from './Nav_Bar'
 import { openModal } from '../../actions/modal/modal_actions'
 
 const msp = (state) => ({
-  current_user: state.entities.current_user,
+  current_user_id: state.session.current_user.id,
 })
 
 const mdp = (dispatch) => ({
