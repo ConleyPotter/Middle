@@ -19,6 +19,11 @@ class User < ApplicationRecord
   after_initialize :ensure_session_token
   attr_reader :password
 
+  has_many :articles,
+    primary_key: :id,
+    foreign_key: :author_id,
+    class_name: :Article
+
   # FGRIPE
 
   def self.find_by_credentials(username, password)
