@@ -5,7 +5,7 @@ import { openModal, closeModal } from '../../actions/modal/modal_actions'
 
 const msp = (state, ownProps) => ({
   errors: state.errors.login,
-  formType: 'login',
+  formType: 'Log In',
 })
 
 const mdp = (dispatch, ownProps) => ({

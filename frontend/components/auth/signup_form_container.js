@@ -5,7 +5,7 @@ import SessionForm from './Session_Form'
 
 const msp = (state, ownProps) => ({
   errors: state.errors.login,
-  formType: 'signup',
+  formType: 'Sign Up',
 })
 
 const mdp = (dispatch, ownProps) => ({
