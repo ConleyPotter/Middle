@@ -2,7 +2,7 @@ import {
   RECEIVE_CURRENT_USER,
   REMOVE_CURRENT_USER,
   RECEIVE_ERRORS
-} from "../actions/session_actions";
+} from "../actions/modal/session_actions";
 
 const _nullSession = {
   current_user: {
