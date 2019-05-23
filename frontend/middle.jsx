@@ -9,11 +9,34 @@ import * as ArticleActions from './actions/articles/article_actions'
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root');
 
+  // Current User
+  let store;
+  if (window.current_user) {
+    const preloadedState = {
+      entities: {
+        users: { [window.current_user.id]: window.current_user }
+      },
+      session: { 
+        current_user: {
+          id: window.current_user.id,
+          username: window.current_user.username
+        }
+      }
+    };
+    store = configureStore(preloadedState);
+    delete window.current_user;
+  } else {
+    const preloadedState = {
+      session: {
+        current_user: {
+          id: null,
+        }
+      }
+    }
+    store = configureStore(preloadedState);
+  }
   // Testing
-  const store = configureStore()
-
   window.getState = store.getState
-  window.store = store.dispatch
 
   // Articles Testing
   window.fetchArticles = ArticleAPIUtil.fetchArticles

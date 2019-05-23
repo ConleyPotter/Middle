@@ -1,0 +1,13 @@
+.avatar {
+  height: 32px;
+  width: 32px;
+  border: 1px solid #03a87c;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  p {
+    color: #03a87c;
+    font-size: 24px;
+  }
+}

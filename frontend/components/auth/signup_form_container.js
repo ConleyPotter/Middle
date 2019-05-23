@@ -4,7 +4,6 @@ import { closeModal, openModal } from '../../actions/modal/modal_actions'
 import SessionForm from './Session_Form'
 
 const msp = (state, ownProps) => ({
-  errors: state.errors.login,
   formType: 'Sign Up',
 })
 

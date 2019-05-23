@@ -21,6 +21,7 @@
   box-shadow: 0 2px 10px rgba(0,0,0,0.15);
   background-image: url(https://cdn-images-1.medium.com/max/1800/1*gnUBeL-INIVDk0_GyL8x1g.png); 
   background-size: 100%;
+  background-repeat: no-repeat;
   overflow: hidden;
   display: flex;
   flex-direction: row;
@@ -80,5 +81,20 @@
   color: rgb(151, 150, 150);
   &:hover {
     color: rgb(109, 106, 106);
+  }
+}
+
+.error-container {
+  // add transition animation
+  position: absolute;
+  z-index: 20;
+  left: 44%;
+  top: 17.5%;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 1px 7px rgba(3, 168, 124, 0.58);
+  &:empty {
+    display: none;
   }
 }

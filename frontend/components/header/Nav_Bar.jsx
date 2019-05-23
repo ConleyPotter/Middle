@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import DropdownMenu from './dropdown_card';
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -7,15 +8,10 @@ class Navbar extends React.Component {
   }
 
   render() {
-    const { current_user_id, logout, openModal, loginGuest } = this.props;
-    const navMenu = Boolean(current_user_id) ? (
+    const { current_user, logout, openModal, loginGuest } = this.props;
+    const navMenu = Boolean(current_user.id) ? (
       <div className="nav-logged-in">
-        <Link to={`/users/${current_user_id}`} replace className="link">
-          Profile
-        </Link>
-        <a href="#" onClick={e => logout()} className="link">
-          Logout {/* Figure out how to get a working logout button s*/}
-        </a>
+        <DropdownMenu current_user={current_user} logout={logout}/>
       </div>
     ) : (
       <div className="nav-logged-out">
