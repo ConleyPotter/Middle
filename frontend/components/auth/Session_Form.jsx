@@ -41,12 +41,21 @@ class SessionForm extends React.Component {
         ? ["No account?", "Create one"]
         : ["Already have an account?", "Sign In"];
 
+    const emailInput = 
+      formType == "Log In" 
+      ? null
+      : (
+      <input
+        type="email"
+        onChange={this.update("email")}
+        value={this.state.email}
+        placeholder="Email"
+        className="session-form-input"
+      />
+    );
+
     return (
       <div className="form-session">
-        <a href="#" onClick={e => closeModal()} className="close-form">
-          {/* How do I make this bigger and appear in the upper right hand corner? */}
-          &times;
-        </a>
         <h2>{headline}</h2>
         <h4>{underHeadline}</h4>
         <form onSubmit={this.handleSubmit} className="session-form-form">
@@ -57,13 +66,7 @@ class SessionForm extends React.Component {
             placeholder="Username"
             className="session-form-input"
           />
-          <input
-            type="email"
-            onChange={this.update("email")}
-            value={this.state.email}
-            placeholder="Email"
-            className="session-form-input"
-          />
+          {emailInput}
           <input
             type="password"
             onChange={this.update("password")}
@@ -79,21 +82,13 @@ class SessionForm extends React.Component {
         </form>
         <p className="switch-form-type">
           {byLine[0]}
-          <a href="#" onClick={() => openModal("signup")}>
-            {byLine[1]}
+          <a href="#" onClick={() => openModal(formType === "Log In" ? "signup" : "login")}>
+            {" " + byLine[1]}
           </a>
         </p>
         <p className="terms-and-privacy">
           To make Middle work, we log user data and share it with service
-          providers. Click "{byLine[1]}" above to accept Medium’s 
-          <a href="#" className="terms-and-privacy-link">
-            {" "}Terms of Service
-          </a>{" "}
-          &{" "}
-          <a href="#" className="terms-and-privacy-link">
-            Privacy Policy
-          </a>
-          .
+          providers.
         </p>
       </div>
     );
