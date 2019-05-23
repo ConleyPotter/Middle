@@ -4,7 +4,7 @@ import SignupForm from '../signup_form_container'
 
 class Modal extends React.Component {
   render () {
-    const { modal, closeModal } = this.props
+    const { modal, closeModal, errorMessage } = this.props
 
     if (!modal) return null;
 
@@ -21,6 +21,9 @@ class Modal extends React.Component {
               &times;
             </a>
           </section>
+        </div>
+        <div className="error-container">
+          {errorMessage}
         </div>
       </div>
     );
