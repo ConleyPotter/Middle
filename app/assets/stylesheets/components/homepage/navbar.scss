@@ -1,25 +1,46 @@
 .navbar {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 10px 100px;
+  height: 65px;
 }
 
 .nav-menu a {
   padding-left: 10px;
+  font-size: 14px;
+  font-weight: 300;
 }
 
 .signup {
   border: 1px solid #03a87c;
   border-radius: 5px;
-  padding-right: 5px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   margin-left: 5px;
   text-align: center;
+  &:hover {
+    color: #017e5c;
+  }
+}
+
+.login {
+  &:hover {
+    color: #017e5c;
+  }
 }
 
 .nav-logo {
   color: black;
-  font-size: 24px;
+  font-size: 30px;
   font-weight: 700;
+}
+
+.demo-link {
+  color: rgb(151, 150, 150);
+  &:hover {
+    color: rgb(109, 106, 106);
+  }
 }

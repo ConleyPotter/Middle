@@ -11,14 +11,19 @@ class Modal extends React.Component {
     const formToRender = modal == "login" ? <LoginForm /> : <SignupForm />
 
     return (
-      <div className="modal-screen" onClick={ closeModal }>
-        <div className="modal-container" onClick={ e => e.stopPropagation() }>
-          <section className="session-form-border"></section>
+      <div className="modal-screen" onClick={closeModal}>
+        <div className="modal-container" onClick={e => e.stopPropagation()}>
+          <section className="session-form-border" />
           {formToRender}
-          <section className="session-form-border"></section>
+          <section className="session-form-border">
+            <a href="#" onClick={e => closeModal()} className="close-form">
+              {/* How do I make this bigger and appear in the upper right hand corner? */}
+              &times;
+            </a>
+          </section>
         </div>
       </div>
-    )
+    );
   }
 }
 
