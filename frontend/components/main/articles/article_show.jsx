@@ -12,7 +12,12 @@ class ArticleShow extends React.Component {
   render() {
     const { title, body, author_id } = this.props
     return (
-      
+      <div className="article-container">
+        <h1>{title}</h1>
+        <p>{body}</p>
+      </div>
     )
   }
 }
+
+export default ArticleShow;
