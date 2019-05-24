@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import ArticleShow from './article_show'
 import { fetchArticle } from '../../../actions/articles/article_actions'
-import { fetchUser } from '../../../actions/modal/session_actions'
 
 const msp = (state, ownProps) => ({
   errors: state.errors.articles,
@@ -11,10 +10,12 @@ const msp = (state, ownProps) => ({
 
 const mdp = (dispatch) => ({
   fetchArticle: (id) => dispatch(fetchArticle(id)),
-  fetchUser: (id) => dispatch(fetchUser(id))
+  // fetchUser: (id) => dispatch(fetchUser(id))
 });
 
 export default connect(
   msp,
   mdp
 )(ArticleShow);
+
+// This needs some work so that I can grab users from the state
