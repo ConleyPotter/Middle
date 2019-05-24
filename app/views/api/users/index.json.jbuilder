@@ -1,3 +1,5 @@
-json.array! @users do |user|
-  json.partial! 'user', user: user
+@users.each do  |user|
+  json.set! user.id do 
+    json.partial! 'user', user: user
+  end
 end
