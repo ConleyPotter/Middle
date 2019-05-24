@@ -4,7 +4,7 @@ import { fetchArticles } from '../../../actions/articles/article_actions'
 
 const msp = (state) => ({
   errors: state.errors.articles,
-  articles: state.articles,
+  articles: state.entities.articles,
 });
 
 const mdp = (dispatch) => ({

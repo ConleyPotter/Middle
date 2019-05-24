@@ -1,0 +1,23 @@
+.article-show-page-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.article-container {
+  width: 700px;
+  font-family: Georgia,
+    Cambria,
+    "Times New Roman",
+    Times,
+    serif;
+  font-weight: 400;
+  .article-title {
+    font-size: 42px;
+  }
+  .article-body {
+    font-size: 21px;
+    line-height: 30px;
+    letter-spacing: .5px;
+  }
+}

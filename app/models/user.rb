@@ -24,6 +24,8 @@ class User < ApplicationRecord
     foreign_key: :author_id,
     class_name: :Article
 
+  has_one_attached :profile_image
+
   # FGRIPE
 
   def self.find_by_credentials(username, password)
