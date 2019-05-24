@@ -5,6 +5,7 @@ class Api::ArticlesController < ApplicationController
 
   def show
     @article = selected_article
+    @author = User.find(selected_article.author_id)
   end
 
   def create

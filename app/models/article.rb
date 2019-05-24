@@ -5,4 +5,6 @@ class Article < ApplicationRecord
     primary_key: :id,
     foreign_key: :author_id,
     class_name: :User
+
+  has_one_attached :cover_photo
 end

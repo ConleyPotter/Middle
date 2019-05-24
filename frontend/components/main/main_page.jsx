@@ -1,13 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import AritcleIndex from './articles/articles_index_container'
 
 class MainPage extends React.Component {
   constructor(props) {
     super(props);
-  }
-
-  componentDidMount() {
-    this.props.fetchUsers();
   }
 
   render() {
@@ -15,10 +12,7 @@ class MainPage extends React.Component {
       <div>
         <h1>Middle</h1>
         <ul>
-          <li>Featured Articles</li>
-          <li>Your Articles</li>
-          <li>Popular Articles</li>
-          <li>All Articles</li>
+          <AritcleIndex />
         </ul>
       </div>
     );

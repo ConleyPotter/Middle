@@ -4,7 +4,6 @@ import ArticleIndexItem from './article_index_item';
 class ArticlesIndex extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { articles: [] }
   }
 
   componentDidMount() {
@@ -12,9 +11,12 @@ class ArticlesIndex extends React.Component {
   }
 
   render() {
-    const { articles } = this.props
-    const articleItems = articles.map(article => {
-      return <ArticleIndexItem key={article.id} article={article} />
+    const { articles } = this.props;
+    let articleItems
+    articleItems = articles.map(article => {
+      return (
+        <ArticleIndexItem key={article.id} article={article} />
+      );
     });
 
     return (
@@ -26,3 +28,5 @@ class ArticlesIndex extends React.Component {
     )
   }
 }
+
+export default ArticlesIndex
