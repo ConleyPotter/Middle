@@ -10,6 +10,7 @@ class Api::ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+    @author = User.find_by(params[:author_id])
     if @article.save
       render :show
     else

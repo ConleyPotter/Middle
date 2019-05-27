@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 export default (data) => {
   const { id, title, byline, author_info, coverPhotoUrl, topic_category, dateWritten } = data.article;
   const { username } = author_info;
+  
   return (
     <div className="article-index-item-container">
       <div className="article-preview-container">

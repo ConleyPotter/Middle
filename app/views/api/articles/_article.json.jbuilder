@@ -14,7 +14,7 @@ end
 if article.cover_photo && article.cover_photo.attached?
   json.coverPhotoUrl url_for(article.cover_photo)
 else
-  json.coverPhotoUrl "default"
+  json.coverPhotoUrl "/rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBJQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--cb6236c345bbdddf93dadc605fdd973c9f138b91/shakespeare.jpg"
 end
 
 def parse_date(timeObj)
