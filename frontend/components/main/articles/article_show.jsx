@@ -1,5 +1,7 @@
 import React from "react";
 
+// if titles are more than one line long, look into css overflow property
+
 class ArticleShow extends React.Component {
   constructor(props) {
     super(props);

@@ -1,5 +1,5 @@
 import React from "react";
-import { EditorState, RichUtils } from "draft-js";
+import { EditorState, RichUtils, convertFromRaw, convertToRaw } from "draft-js";
 import Editor from "draft-js-plugins-editor"
 import createHighlightPlugin from '../../../util/draft_js_plugins/highlight_plugin'
 import addLinkPlugin from '../../../util/draft_js_plugins/add_link_plugin'
@@ -72,14 +72,59 @@ class ArticleEdtor extends React.Component {
     this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'ITALIC'));
   }
 
+  componentDidMount() {
+    if (this.props.articleBody === null) {
+      this.setState({
+        displayedArticleBody: "new",
+        editorState: EditorState.createEmpty()
+      });
+    } else {
+      this.setState({
+        displayedArticleBody: this.props.articleBody.id,
+        editorState: EditorState.createWithContent(
+          convertFromRaw(JSON.parse(this.props.articleBody.content))
+        )
+      });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.articleBody == null && Boolean(this.props.articleBody)) {
+      this.props.loadArticleBody;
+      this.setState({
+        displayedArticleBody: this.props.articleBody.id,
+        editorState: EditorState.createWithContent(
+          convertFromRaw(JSON.parse(this.props.articleBody.content))
+        )
+      });
+    }
+  }
+
+  submitEditor() {
+    let contentState = this.state.editorState.getCurrentContent()
+    if (this.state.displayedArticleBody == "new") {
+      let articleBody = { conent: convertToRaw(contentState) };
+      articleBody["content"] = JSON.stringify(articleBody.content);
+      this.props.createArticleBody(articleBody.conent);
+    } else {
+      let articleBody = { content: convertToRaw(contentState) };
+      articleBody["content"] = JSON.stringify(articleBody.content);
+      this.props.updateArticleBody(this.state.displayedArticleBody, articleBody.content);
+    }
+  }
+
   render() {
     return (
       <StyledWrapper onClick={this.focusEditor}>
         <button onMouseDown={this._onUnderlineClick}>
           Underline
         </button>
-        <button onMouseDown={this._onBoldClick}>Bold</button>
-        <button onMouseDown={this._onItalicClick}>Italic</button>
+        <button onMouseDown={this._onBoldClick}>
+          Bold
+        </button>
+        <button onMouseDown={this._onItalicClick}>
+          Italic
+        </button>
         <Editor
           ref={this.setEditor}
           editorState={this.state.editorState}
