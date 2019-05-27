@@ -7,9 +7,9 @@ const articlesReducer = (state = {}, action) => {
   Object.freeze(state);
   switch(action.type) {
     case RECEIVE_ARTICLE:
-      return action.article
+      return Object.assign({}, state, {[action.article.id]: action.article})
     case RECEIVE_ARTICLES:
-      return action.articles
+      return Object.assign({}, state, action.articles)
     default:
       return state;
   }

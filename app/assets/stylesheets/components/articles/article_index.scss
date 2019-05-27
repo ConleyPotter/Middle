@@ -1,0 +1,50 @@
+.article-index-item-container {
+  width: 656px;
+  margin-right: 24px;
+  margin-left: 124px;
+  display: flex;
+  .article-preview-container {
+    .article-show-link {
+      color: black;
+      h2 {
+        font-size: 24px;
+      }
+
+      h4 {
+        font-size: 16px;
+        margin-top: 2px;
+        color: rgba(0, 0, 0, 0.54);
+        line-height: 20px;
+      }
+    }
+    width: 480px;
+    margin-right: 24px;
+    font-family: Geneva, Arial, sans-serif;
+    h5 {
+      font-size: 15px;
+      line-height: 20px;
+      a {
+        color: black;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+    h6 {
+      line-height: 20px;
+      color: rgba(0, 0, 0, 0.54);
+    }
+  }
+  .thumbnail {
+    text-align: center;
+    width: 150px;
+    height: 150px;
+  }
+  img {
+    display: inline-block;
+    height: 100%;
+    width: auto;
+    overflow: hidden;
+  }
+  margin-bottom: 48px;
+}

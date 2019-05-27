@@ -1,5 +1,5 @@
 class Article < ApplicationRecord
-  validates :title, :body, :author_id, presence: true
+  validates :title, :body, :author_id, :byline, :topic_category, presence: true
   
   belongs_to :author,
     primary_key: :id,

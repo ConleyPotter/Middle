@@ -10,12 +10,12 @@ class ArticleShow extends React.Component {
   }
 
   render() {
-    const { title, body, author_info, coverPhotoUrl } = this.props.article;
-    let profile_picture, username;
-    if (author_info) {
-      profile_picture = author_info.profile_picture;
-      username = author_info.username;
-    }
+      const { title, body, author_info, coverPhotoUrl } = this.props.article;
+      let profile_picture, username;
+      if (author_info) {
+        profile_picture = author_info.profile_picture;
+        username = author_info.username;
+      }
     
     const avatar = profile_picture === "avatar"
       ? (

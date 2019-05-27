@@ -26,4 +26,11 @@ h6 {
 
 a {
   color: #03a87c;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+Link:hover {
+  cursor: pointer;
 }

@@ -11,14 +11,9 @@ class ArticlesIndex extends React.Component {
   }
 
   render() {
-    const { articles } = this.props;
-    let articleItems
-    articleItems = articles.map(article => {
-      return (
-        <ArticleIndexItem key={article.id} article={article} />
-      );
+    const articleItems = this.props.articles.map(article => {
+      return (<ArticleIndexItem article={article} key={article.id} />)
     });
-
     return (
       <div>
         <ul>

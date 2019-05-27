@@ -1,4 +1,4 @@
-json.extract! article, :id, :title, :body
+json.extract! article, :id, :title, :body, :byline, :topic_category
 
 if author.profile_picture.attached?
   prof_pic = url_for(author.profile_picture)
@@ -16,3 +16,25 @@ if article.cover_photo && article.cover_photo.attached?
 else
   json.coverPhotoUrl "default"
 end
+
+def parse_date(timeObj)
+  months = {
+    1 => "January",
+    2 => "February",
+    3 => "March",
+    4 => "April",
+    5 => "May",
+    6 => "June",
+    7 => "July",
+    8 => "August",
+    9 => "September",
+    10 => "October",
+    11 => "November",
+    12 => "December",
+  }
+  monthNumber = timeObj.month
+  dayOfTheMonth = timeObj.day
+  return "#{months[monthNumber]} #{dayOfTheMonth}"
+end
+
+json.set! :dateWritten, parse_date(article.created_at)
