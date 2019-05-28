@@ -6,7 +6,7 @@ import MainPageContainer from '../components/main/main_page_container'
 import Modal from './auth/modal/modal_container'
 import ArticleShow from './main/articles/article_show_container'
 import UserProfile from './users/user_show_container'
-import NewArticle from './main/articles/new_article_container'
+import WriteArticle from './main/articles/write_article_container'
 import { Route, Switch } from 'react-router-dom'
 import { AuthRoute, ProtectedRoute } from '../util/route_util'
 
@@ -23,7 +23,8 @@ const App = () => (
       <Route exact path="/" component={ MainPageContainer } />
       <Route exact path="/articles/:articleId" component={ ArticleShow } />
       <Route path="/users/:userId" component={ UserProfile } />
-      <ProtectedRoute path="/articles/:articleId/edit" component={ NewArticle } />
+      <ProtectedRoute path="/articles/:articleId/edit" component={ WriteArticle } />
+      <ProtectedRoute path="/articles/new" component={ WriteArticle } />
     </Switch>
   </div>
 );

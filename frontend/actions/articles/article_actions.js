@@ -30,3 +30,12 @@ export const postArticle = article => dispatch => {
     })
   );
 };
+
+export const updateArticle = article => dispatch => {
+  ArticleAPIUtil.updateArticle(article).then(articleReturned => 
+    dispatch({
+      type: RECEIVE_ARTICLE,
+      article: articleReturned,
+    })
+  );
+}

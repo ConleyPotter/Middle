@@ -20,6 +20,7 @@ class Api::ArticlesController < ApplicationController
 
   def update
     @article = selected_article
+    @author = User.find(selected_article.author_id)
     if @article && @article.update_attributes(article_params)
       render :show
     elsif !@article

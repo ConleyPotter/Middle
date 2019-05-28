@@ -21,3 +21,11 @@ export const postArticle = (article) => {
     data: { article },
   });
 };
+
+export const updateArticle = (article) => {
+  return $.ajax({
+    method: "PATCH",
+    url: `api/articles/${article.id}`,
+    data: { article },
+  })
+}

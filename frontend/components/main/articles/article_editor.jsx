@@ -40,10 +40,7 @@ class ArticleEdtor extends React.Component {
     this._onUnderlineClick = this._onUnderlineClick.bind(this);
     this._onBoldClick = this._onBoldClick.bind(this);
     this._onItalicClick = this._onItalicClick.bind(this);
-  }
-
-  componentDidMount() {
-    this.focusEditor();
+    this.submitEditor = this.submitEditor.bind(this);
   }
 
   handleKeyCommand(command) {
@@ -59,79 +56,96 @@ class ArticleEdtor extends React.Component {
 
   _onUnderlineClick(e) {
     e.preventDefault();
-    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'UNDERLINE'));
+    this.onChange(
+      RichUtils.toggleInlineStyle(this.state.editorState, 'UNDERLINE')
+    );
   }
   
   _onBoldClick(e) {
     e.preventDefault()
-    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'BOLD'));
+    this.onChange(
+      RichUtils.toggleInlineStyle(this.state.editorState, 'BOLD')
+    );
   }
 
   _onItalicClick(e) {
     e.preventDefault();
-    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'ITALIC'));
+    this.onChange(
+      RichUtils.toggleInlineStyle(this.state.editorState, 'ITALIC')
+    );
   }
 
   componentDidMount() {
-    if (this.props.articleBody === null) {
+    this.focusEditor();
+    if (!this.props.article) {
       this.setState({
-        displayedArticleBody: "new",
+        displayedArticle: "new",
         editorState: EditorState.createEmpty()
       });
     } else {
       this.setState({
-        displayedArticleBody: this.props.articleBody.id,
+        displayedArticle: this.props.article,
         editorState: EditorState.createWithContent(
-          convertFromRaw(JSON.parse(this.props.articleBody.content))
+          convertFromRaw(JSON.parse(this.props.article.body))
         )
       });
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevProps.articleBody == null && Boolean(this.props.articleBody)) {
-      this.props.loadArticleBody;
+    if (!prevProps.article && !!this.props.article) {
       this.setState({
-        displayedArticleBody: this.props.articleBody.id,
+        displayedArticle: this.props.article.body,
         editorState: EditorState.createWithContent(
-          convertFromRaw(JSON.parse(this.props.articleBody.content))
+          convertFromRaw(JSON.parse(this.props.article.body))
         )
       });
     }
   }
 
   submitEditor() {
-    let contentState = this.state.editorState.getCurrentContent()
-    if (this.state.displayedArticleBody == "new") {
-      let articleBody = { conent: convertToRaw(contentState) };
-      articleBody["content"] = JSON.stringify(articleBody.content);
-      this.props.createArticleBody(articleBody.conent);
+    e.preventDefault();
+    let contentState = this.state.editorState.getCurrentContent();
+    if (this.state.displayedArticle == "new") {
+      let article = { content: convertToRaw(contentState) };
+      article["content"] = JSON.stringify(article["content"]);
+      this.props.postArticle({
+        body: article["content"],
+        title: "testing 123",
+        topic_category: "testing",
+        byline: "testing",
+        author_id: this.props.article.author_id,
+      });
     } else {
-      let articleBody = { content: convertToRaw(contentState) };
-      articleBody["content"] = JSON.stringify(articleBody.content);
-      this.props.updateArticleBody(this.state.displayedArticleBody, articleBody.content);
+      let article = { content: convertToRaw(contentState) };
+      article["content"] = JSON.stringify(article["content"]);
+      this.props.updateArticle({
+        body: article["content"],
+        title: "testing 234",
+        topic_category: "testing 2",
+        byline: "testing 2",
+        author_id: this.props.article.author_id,
+        id: this.props.article.id,
+      });
     }
   }
 
   render() {
     return (
       <StyledWrapper onClick={this.focusEditor}>
-        <button onMouseDown={this._onUnderlineClick}>
-          Underline
-        </button>
-        <button onMouseDown={this._onBoldClick}>
-          Bold
-        </button>
-        <button onMouseDown={this._onItalicClick}>
-          Italic
-        </button>
-        <Editor
-          ref={this.setEditor}
-          editorState={this.state.editorState}
-          handleKeyCommand={this.handleKeyCommand}
-          onChange={this.onChange}
-          plugins={this.plugins}
-        />
+        <button onMouseDown={this._onUnderlineClick}>Underline</button>
+        <button onMouseDown={this._onBoldClick}>Bold</button>
+        <button onMouseDown={this._onItalicClick}>Italic</button>
+        <form onSubmit={this.submitEditor}>
+          <Editor
+            ref={this.setEditor}
+            editorState={this.state.editorState}
+            handleKeyCommand={this.handleKeyCommand}
+            onChange={this.onChange}
+            plugins={this.plugins}
+          />
+          <input type="submit">Submit</input>
+        </form>
       </StyledWrapper>
     );
   }

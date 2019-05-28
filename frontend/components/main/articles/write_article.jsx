@@ -1,15 +1,19 @@
 import React from "react";
-import ArticleEditor from './article_editor';
+import ArticleEditor from './article_editor_container';
 
 class ArticleShow extends React.Component {
   constructor(props) {
     super(props);
   }
 
+  componentDidMount() {
+    this.props.fetchArticle(this.props.match.params.articleId)
+  }
+
   render() {
     return (
       <div className="article-show-page-container">
-        <ArticleEditor />
+        <ArticleEditor article={this.props.article}/>
       </div>
     );
   }
