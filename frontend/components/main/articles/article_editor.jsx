@@ -6,11 +6,13 @@ class ArticleEdtor extends React.Component {
     super(props);
 
     this.state = {
-      errors: []
+      errors: [],
+      body: null,
     };
 
     this.contentEditableDiv = React.createRef();
 
+    this.update = this.update.bind(this);
     this.toolBarButtonClicked = this.toolBarButtonClicked.bind(this);
     this.submitEditor = this.submitEditor.bind(this);
     this.focusOnEditable = this.focusOnEditable.bind(this);
@@ -21,44 +23,52 @@ class ArticleEdtor extends React.Component {
   }
 
   componentDidMount() {
-    debugger
-    this.props.fetchArticle(this.props.match.params.articleId)
+    if (this.props.match.params.articleId) {
+      this.props.fetchArticle(this.props.match.params.articleId)
+    } else {
+      this.setState({
+        displayedArticle: "new"
+      });
+    }
     this.focusOnEditable();
   }
 
-  update(name) {
-    event => {
-      this.setState({ [name]: event.target.value });
-    };
+  componentDidUpdate(prevProps) {
+    if (prevProps.article === {} && this.props.article !== {}) {
+      this.setState({
+        displayedArticle: this.props.article
+      });
+    } 
+  }
+
+  update(event, name) {
+    this.setState({ [name]: event.target.innerHTML });
   }
 
   submitEditor(e) {
     e.preventDefault();
-    let contentState = this.state.editorState.getCurrentContent();
+    debugger;
     if (this.state.displayedArticle == "new") {
-      let article = { content: convertToRaw(contentState) };
-      article["content"] = JSON.stringify(article["content"]);
       this.props.postArticle({
-        body: article["content"],
+        body: this.state.body,
         title: "testing 123",
         topic_category: "testing",
         byline: "testing",
         author_id: this.props.current_user.id
         // how will I deal with the photo to attach? AWS
       });
-      return <Redirect to={`articles/${this.props.article.id}`} />;
+      // return <Redirect to={`articles/${this.props.article.id}`} />;
     } else {
-      let article = { content: convertToRaw(contentState) };
-      article["content"] = JSON.stringify(article["content"]);
+      const { author_id, id } = this.props.article[this.props.match.params.articleId]
       this.props.updateArticle({
-        body: article["content"],
+        body: this.state.body,
         title: "testing 234",
         topic_category: "testing 2",
         byline: "testing 2",
-        author_id: this.props.article.author_id,
-        id: this.props.article.id
+        author_id: author_id,
+        id: id
       });
-      return <Redirect to={`articles/${this.props.article.id}`} />;
+      // return <Redirect to={`articles/${this.props.article.id}`} />;
     }
   }
 
@@ -114,10 +124,13 @@ class ArticleEdtor extends React.Component {
         <div
           className="article-editor-container"
           contentEditable
+          suppressContentEditableWarning
           ref={this.contentEditableDiv}
+          onBlur={event => this.update(event, "body")}
         >
-          <p>{placeholder}</p>
+          {placeholder}
         </div>
+        <button onClick={this.submitEditor}>Submit</button>
       </div>
     );
   }
