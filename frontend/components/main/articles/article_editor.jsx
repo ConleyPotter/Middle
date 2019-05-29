@@ -1,109 +1,38 @@
 import React from "react";
-import { EditorState, RichUtils, convertFromRaw, convertToRaw } from "draft-js";
-import Editor from "draft-js-plugins-editor"
-import createHighlightPlugin from '../../../util/draft_js_plugins/highlight_plugin'
-import addLinkPlugin from '../../../util/draft_js_plugins/add_link_plugin'
-import styled from "styled-components";
-import draftJsCss from '../../../util/draftJsCss';
-
-const highlightPlugin = createHighlightPlugin();
-
-
-const StyledWrapper = styled.div`
-  & {
-    ${draftJsCss}
-  }
-`;
+import { Redirect } from 'react-router'
 
 class ArticleEdtor extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { editorState: EditorState.createEmpty() };
-    this.onChange = editorState => this.setState({ editorState });
 
-    this.setEditor = editor => {
-      this.editor = editor;
+    this.state = {
+      errors: []
     };
 
-    this.focusEditor = () => {
-      if (this.editor) {
-        this.editor.focus();
-      }
-    };
+    this.contentEditableDiv = React.createRef();
 
-    this.plugins = [
-      highlightPlugin,
-      addLinkPlugin
-    ]
-
-    this.handleKeyCommand = this.handleKeyCommand.bind(this);
-    this._onUnderlineClick = this._onUnderlineClick.bind(this);
-    this._onBoldClick = this._onBoldClick.bind(this);
-    this._onItalicClick = this._onItalicClick.bind(this);
+    this.toolBarButtonClicked = this.toolBarButtonClicked.bind(this);
     this.submitEditor = this.submitEditor.bind(this);
+    this.focusOnEditable = this.focusOnEditable.bind(this);
   }
 
-  handleKeyCommand(command) {
-    const newState = RichUtils.handleKeyCommand(this.state.editorState, command);
-
-    if (newState) {
-      this.onChange(newState);
-      return 'handled';
-    }
-
-    return 'not-handled';
-  }
-
-  _onUnderlineClick(e) {
-    e.preventDefault();
-    this.onChange(
-      RichUtils.toggleInlineStyle(this.state.editorState, 'UNDERLINE')
-    );
-  }
-  
-  _onBoldClick(e) {
-    e.preventDefault()
-    this.onChange(
-      RichUtils.toggleInlineStyle(this.state.editorState, 'BOLD')
-    );
-  }
-
-  _onItalicClick(e) {
-    e.preventDefault();
-    this.onChange(
-      RichUtils.toggleInlineStyle(this.state.editorState, 'ITALIC')
-    );
+  focusOnEditable() {
+    this.contentEditableDiv.current.focus();
   }
 
   componentDidMount() {
-    this.focusEditor();
-    if (!this.props.article) {
-      this.setState({
-        displayedArticle: "new",
-        editorState: EditorState.createEmpty()
-      });
-    } else {
-      this.setState({
-        displayedArticle: this.props.article,
-        editorState: EditorState.createWithContent(
-          convertFromRaw(JSON.parse(this.props.article.body))
-        )
-      });
-    }
+    debugger
+    this.props.fetchArticle(this.props.match.params.articleId)
+    this.focusOnEditable();
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (!prevProps.article && !!this.props.article) {
-      this.setState({
-        displayedArticle: this.props.article.body,
-        editorState: EditorState.createWithContent(
-          convertFromRaw(JSON.parse(this.props.article.body))
-        )
-      });
-    }
+  update(name) {
+    event => {
+      this.setState({ [name]: event.target.value });
+    };
   }
 
-  submitEditor() {
+  submitEditor(e) {
     e.preventDefault();
     let contentState = this.state.editorState.getCurrentContent();
     if (this.state.displayedArticle == "new") {
@@ -114,8 +43,10 @@ class ArticleEdtor extends React.Component {
         title: "testing 123",
         topic_category: "testing",
         byline: "testing",
-        author_id: this.props.article.author_id,
+        author_id: this.props.current_user.id
+        // how will I deal with the photo to attach? AWS
       });
+      return <Redirect to={`articles/${this.props.article.id}`} />;
     } else {
       let article = { content: convertToRaw(contentState) };
       article["content"] = JSON.stringify(article["content"]);
@@ -125,28 +56,69 @@ class ArticleEdtor extends React.Component {
         topic_category: "testing 2",
         byline: "testing 2",
         author_id: this.props.article.author_id,
-        id: this.props.article.id,
+        id: this.props.article.id
       });
+      return <Redirect to={`articles/${this.props.article.id}`} />;
     }
   }
 
+  toolBarButtonClicked(e, styling) {
+    e.preventDefault();
+    document.execCommand(styling, false, null);
+    this.focusOnEditable();
+  }
+
   render() {
+    const placeholder =
+      this.props.article[this.props.match.params.articleId]
+      ? this.props.article[this.props.match.params.articleId].body
+      : "Tell your story...";
     return (
-      <StyledWrapper onClick={this.focusEditor}>
-        <button onMouseDown={this._onUnderlineClick}>Underline</button>
-        <button onMouseDown={this._onBoldClick}>Bold</button>
-        <button onMouseDown={this._onItalicClick}>Italic</button>
-        <form onSubmit={this.submitEditor}>
-          <Editor
-            ref={this.setEditor}
-            editorState={this.state.editorState}
-            handleKeyCommand={this.handleKeyCommand}
-            onChange={this.onChange}
-            plugins={this.plugins}
-          />
-          <input type="submit">Submit</input>
-        </form>
-      </StyledWrapper>
+      <div>
+        <button
+          onClick={e => this.toolBarButtonClicked(e, "bold")}
+          className="document-editor-buttons"
+        >
+          <span className="fa fa-bold" />
+        </button>
+        <button
+          onClick={e => this.toolBarButtonClicked(e, "italic")}
+          className="document-editor-buttons"
+        >
+          <span className="fa fa-italic" />
+        </button>
+        <button
+          onClick={e => this.toolBarButtonClicked(e, "underline")}
+          className="document-editor-buttons"
+        >
+          <span className="fa fa-underline" />
+        </button>
+        <button
+          onClick={e => this.toolBarButtonClicked(e, "justifyLeft")}
+          className="document-editor-buttons"
+        >
+          <span className="fa fa-align-left" />
+        </button>
+        <button
+          onClick={e => this.toolBarButtonClicked(e, "justifyCenter")}
+          className="document-editor-buttons"
+        >
+          <span className="fa fa-align-center" />
+        </button>
+        <button
+          onClick={e => this.toolBarButtonClicked(e, "justifyRight")}
+          className="document-editor-buttons"
+        >
+          <span className="fa fa-align-right" />
+        </button>
+        <div
+          className="article-editor-container"
+          contentEditable
+          ref={this.contentEditableDiv}
+        >
+          <p>{placeholder}</p>
+        </div>
+      </div>
     );
   }
 }
