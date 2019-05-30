@@ -1,5 +1,5 @@
 import React from "react";
-import NavBarContainer from './header/nav_bar_container.js';
+import NavBar from './header/nav_bar_container.js';
 import LoginFormContainer from './auth/login_form_container.js';
 import SignupFormContainer from './auth/signup_form_container.js';
 import MainPageContainer from '../components/main/main_page_container'
@@ -14,7 +14,7 @@ const App = () => (
   <div>
     <Modal />
     <header>
-      <NavBarContainer />
+      <NavBar />
     </header>
 
     <Route path="/login" component={LoginFormContainer} />
