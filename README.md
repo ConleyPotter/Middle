@@ -17,7 +17,8 @@ Middle is a clone of Medium.com, a site used by millions to express their knowle
     see their article in the index.
   * The article editor copy and pastes well:
   
-![Copies and Pastes Well](https://s3.us-east-2.amazonaws.com/middle-seeds/copy-paste.gif)
+<img src="app/assets/images/copy-paste.gif" width="200px">
+
 * On an article show page, the user will see their article, with all the inline
   styling changes they specified while writing the article.
 
