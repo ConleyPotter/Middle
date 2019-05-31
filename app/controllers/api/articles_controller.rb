@@ -5,10 +5,12 @@ class Api::ArticlesController < ApplicationController
 
   def show
     @article = selected_article
+    @author = User.find(selected_article.author_id)
   end
 
   def create
     @article = Article.new(article_params)
+    @author = User.find_by(params[:author_id])
     if @article.save
       render :show
     else
@@ -18,6 +20,7 @@ class Api::ArticlesController < ApplicationController
 
   def update
     @article = selected_article
+    @author = User.find(selected_article.author_id)
     if @article && @article.update_attributes(article_params)
       render :show
     elsif !@article
@@ -42,6 +45,6 @@ class Api::ArticlesController < ApplicationController
     Article.find(params[:id])
   end
   def article_params
-    params.require(:article).permit(:title, :body, :author_id)
+    params.require(:article).permit(:title, :body, :author_id, :byline, :topic_category)
   end
 end

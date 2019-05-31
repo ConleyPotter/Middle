@@ -36,13 +36,12 @@ document.addEventListener('DOMContentLoaded', () => {
     store = configureStore(preloadedState);
   }
   // Testing
-  window.getState = store.getState
+  window.getState = store.getState;
+  window.store = store.dispatch;
 
   // Articles Testing
-  window.fetchArticles = ArticleAPIUtil.fetchArticles
-  window.fetchArticle = ArticleAPIUtil.fetchArticle
-  window.fetchArticle = ArticleActions.fetchArticle
-  window.fetchArticles = ArticleActions.fetchArticles
+  window.postArticle = ArticleAPIUtil.postArticle
+  window.postArticleAction = ArticleActions.postArticle
 
   // React
   ReactDOM.render(<Root store={store} />, root);

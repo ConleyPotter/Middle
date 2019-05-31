@@ -20,3 +20,22 @@ export const fetchArticles = () => dispatch => {
     })
   );
 };
+
+
+export const postArticle = article => dispatch => {
+  ArticleAPIUtil.postArticle(article).then(articleReturned =>
+    dispatch({
+      type: RECEIVE_ARTICLE,
+      article: articleReturned,
+    })
+  );
+};
+
+export const updateArticle = article => dispatch => {
+  ArticleAPIUtil.updateArticle(article).then(articleReturned => 
+    dispatch({
+      type: RECEIVE_ARTICLE,
+      article: articleReturned,
+    })
+  );
+}

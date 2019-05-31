@@ -1,17 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import AritcleIndex from './articles/articles_index_container'
+import MostPopularArticles from './articles/most_popular_articles_container'
 
 class MainPage extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
-      <div>
-        <h1>Middle</h1>
-        <ul>
-          <li>Featured Articles</li>
-          <li>Your Articles</li>
-          <li>Popular Articles</li>
-          <li>All Articles</li>
-        </ul>
+      <div className="super-container">
+        <AritcleIndex />
+        {/* <MostPopularArticles />*/}
       </div>
     );
   }

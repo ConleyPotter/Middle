@@ -13,3 +13,19 @@ export const fetchArticle = (id) => {
     error: err => console.log(err) // come back to clean up later
   });
 };
+
+export const postArticle = (article) => {
+  return $.ajax({
+    method: "POST",
+    url: 'api/articles',
+    data: { article },
+  });
+};
+
+export const updateArticle = (article) => {
+  return $.ajax({
+    method: "PATCH",
+    url: `api/articles/${article.id}`,
+    data: { article },
+  })
+}

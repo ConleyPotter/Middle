@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { login, logout } from '../../actions/modal/session_actions';
+import { getUsers } from '../../actions/users/users_actions'
 import NavBar from './Nav_Bar'
 import { openModal } from '../../actions/modal/modal_actions'
 
@@ -15,7 +16,7 @@ const mdp = (dispatch) => ({
     username: "guest",
     email: "guest@guest.com",
     password: "password123",
-  })),
+  }))
 });
 
 export default connect(msp, mdp)(NavBar)

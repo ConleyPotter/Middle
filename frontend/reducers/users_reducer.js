@@ -1,10 +1,10 @@
-import { RECEIVE_CURRENT_USER } from '../actions/modal/session_actions';
+import { RECEIVE_USERS } from '../actions/users/users_actions';
 
 export default (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
-    case RECEIVE_CURRENT_USER:
-      return Object.assign({}, state, {[action.current_user.id]: action.current_user});
+    case RECEIVE_USERS:
+      return Object.assign({}, action.users);
     default:
       return state;
   }

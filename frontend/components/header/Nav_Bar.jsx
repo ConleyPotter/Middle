@@ -1,6 +1,7 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
-import DropdownMenu from './dropdown_card';
+import DropdownMenu from "./dropdown_card";
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -11,15 +12,11 @@ class Navbar extends React.Component {
     const { current_user, logout, openModal, loginGuest } = this.props;
     const navMenu = Boolean(current_user.id) ? (
       <div className="nav-logged-in">
-        <DropdownMenu current_user={current_user} logout={logout}/>
+        <DropdownMenu current_user={current_user} logout={logout} />
       </div>
     ) : (
       <div className="nav-logged-out">
-        <a
-          href="#"
-          onClick={() => loginGuest()}
-          className="login link-green"
-        >
+        <a href="#" onClick={() => loginGuest()} className="login link-green">
           Demo Sign In
         </a>
         <a
