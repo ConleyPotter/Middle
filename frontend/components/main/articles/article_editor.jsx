@@ -18,7 +18,6 @@ class ArticleEdtor extends React.Component {
     this.focusOnEditable = this.focusOnEditable.bind(this);
   }
 
-  fireSelectionMonitor(event) {}
 
   focusOnEditable() {
     this.contentEditableDiv.current.focus();
@@ -60,8 +59,8 @@ class ArticleEdtor extends React.Component {
       this.props.postArticle({
         body: this.state.body,
         title: this.state.title,
-        topic_category: "testing",
-        byline: "testing",
+        topic_category: "Chinese Literature",
+        byline: "Another article here...",
         author_id: this.props.current_user.id
         // how will I deal with the photo to attach? AWS
       });
