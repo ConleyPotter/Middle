@@ -6,6 +6,23 @@ Middle is a clone of Medium.com, a site used by millions to express their knowle
 
 * Users will be able to write stories and share them with the greater Middle audience. 
 
-* Stories can have claps, somewhat like a "like" on other social sites.
+* Stories can have claps, somewhat like a "like" on other social sites. [FORTHCOMING]
 
-* Stories can have comments, which will be written by other Users.
+## List of Features
+* Users can sign up, log in, and log out of the site.
+* Users visiting the site who do not wish to sign up for an account can use the
+  "Guest Log In" feature to preview how to write an article.
+* Users who are signed in my write new articles. 
+  * Upon hitting submit, the user is redirected to the home page, where they can
+    see their article in the index.
+  * The article editor copy and pastes well:
+  
+![Copies and Pastes Well](https://s3.us-east-2.amazonaws.com/middle-seeds/copy-paste.gif)
+
+* On an article show page, the user will see their article, with all the inline
+  styling changes they specified while writing the article.
+
+
+
+
+
