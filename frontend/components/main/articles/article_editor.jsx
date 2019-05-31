@@ -35,7 +35,6 @@ class ArticleEdtor extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    debugger
     if (
       Object.values(prevProps.article).length == 0 &&
       Object.values(this.props.article).length > 0

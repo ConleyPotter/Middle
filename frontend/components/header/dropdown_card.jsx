@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom'
 
 class DropdownCard extends React.Component {
   constructor(props) {
@@ -43,9 +44,9 @@ class DropdownCard extends React.Component {
           <p>@{current_user.username}</p>
         </div>
         <div className="item-separator" />
-        <a href="#" className="menu-item">
-          Placeholder for New Article
-        </a>
+        <Link className="menu-item" to="/articles/new">
+          New Article
+        </Link>
         <a href="#" className="menu-item">
           Placeholder for Articles Written
         </a>

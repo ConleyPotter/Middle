@@ -5,7 +5,6 @@ import SignupFormContainer from './auth/signup_form_container.js';
 import MainPageContainer from '../components/main/main_page_container'
 import ArticleShow from './main/articles/article_show_container'
 import Modal from './auth/modal/modal_container'
-import ArticleShow from './main/articles/article_show_container'
 import UserProfile from './users/user_show_container'
 import ArticleEditor from './main/articles/article_editor_container'
 import { Route, Switch } from 'react-router-dom'
