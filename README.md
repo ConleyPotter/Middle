@@ -38,3 +38,6 @@ Middle is a clone of Medium.com, a site used by millions to express their knowle
 ### Article Index
 * I am also quite proud of the way that the articles are displayed on the homepage, as this was my first time ever seeding a database using an Amazon S3 served seed bucket to populate a page with high quality images, always available and served dynamically. 
 * In the future, I play to size the images on the index page in thumbnails so that they are uniform.
+* I'm also pretty proud of the modal: 
+
+<img src="modal" width="400px"><img src="modal-with-errors" width="400px">
