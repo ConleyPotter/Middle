@@ -11,8 +11,12 @@ class ArticleShow extends React.Component {
     this.props.fetchArticle(this.props.match.params.articleId);
   }
 
+  componentDidUpdate() {
+    document.getElementById('content').innerHTML = this.props.article.body;
+  }
+
   render() {
-      const { title, body, author_info, coverPhotoUrl } = this.props.article;
+      const { title, author_info, coverPhotoUrl } = this.props.article;
       let profile_picture, username;
       if (author_info) {
         profile_picture = author_info.profile_picture;
@@ -39,7 +43,11 @@ class ArticleShow extends React.Component {
           <div className="cover-photo">
             <img src={coverPhotoUrl} />
           </div>
-          <p className="article-body">{body}</p>
+          <p id="content" className="article-body">
+          
+            // content goes here
+          
+          </p>
         </div>
       </div>
     );

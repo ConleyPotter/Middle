@@ -35,17 +35,17 @@ class ArticleEdtor extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.article === {} && this.props.article !== {}) {
+    debugger
+    if (
+      Object.values(prevProps.article).length == 0 &&
+      Object.values(this.props.article).length > 0
+    ) {
       this.setState({
         displayedArticle: this.props.article
       });
-    }
-    if (document.getSelection.type) {
-      const selected = document.getSelection.toString();
-      document
-        .getSelection()
-        .anchorNode.addEventListener("mouseup", this.setState({}));
-      document.appendChild(<EditorPopup selected={selected} />);
+      document.getElementById("body").innerHTML = this.props.article[
+        this.props.match.params.articleId
+      ].body;
     }
   }
 
@@ -67,14 +67,14 @@ class ArticleEdtor extends React.Component {
       // redirect to a user's profile page once its built
       // return <Redirect to={`articles/${this.props.article.id}`} />;
     } else {
-      const { author_id, id } = this.props.article[
+      const { author_id, id, topic_category, byline } = this.props.article[
         this.props.match.params.articleId
       ];
       this.props.updateArticle({
         body: this.state.body,
         title: this.state.title,
-        topic_category: "testing 2",
-        byline: "testing 2",
+        topic_category: topic_category,
+        byline: byline,
         author_id: author_id,
         id: id
       });
@@ -89,12 +89,6 @@ class ArticleEdtor extends React.Component {
   }
 
   render() {
-    const placeholderBody = this.props.article[
-      this.props.match.params.articleId
-    ]
-      ? this.props.article[this.props.match.params.articleId].body
-      : "Tell your story...";
-
     const placeholderTitle = this.props.article[
       this.props.match.params.articleId
     ]
@@ -157,12 +151,13 @@ class ArticleEdtor extends React.Component {
           </div>
           <div
             className="article-editor-container-body"
+            id="body"
             contentEditable
             suppressContentEditableWarning
             ref={this.contentEditableDiv}
             onBlur={event => this.update(event, "body")}
           >
-            {placeholderBody}
+            Tell your story...
           </div>
           <div className="submit-wrapper">
             <button className="submit-button" onClick={this.submitEditor}>
