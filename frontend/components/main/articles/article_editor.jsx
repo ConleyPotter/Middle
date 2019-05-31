@@ -7,7 +7,8 @@ class ArticleEdtor extends React.Component {
 
     this.state = {
       errors: [],
-      body: null
+      body: null,
+      redirect: null,
     };
 
     this.contentEditableDiv = React.createRef();
@@ -65,7 +66,6 @@ class ArticleEdtor extends React.Component {
         // how will I deal with the photo to attach? AWS
       });
       // redirect to a user's profile page once its built
-      // return <Redirect to={`articles/${this.props.article.id}`} />;
     } else {
       const { author_id, id, topic_category, byline } = this.props.article[
         this.props.match.params.articleId
@@ -78,8 +78,8 @@ class ArticleEdtor extends React.Component {
         author_id: author_id,
         id: id
       });
-      return <Redirect to={`articles/${this.props.article.id}`} />;
     }
+    this.setState({redirect: true})
   }
 
   toolBarButtonClicked(e, styling) {
@@ -95,13 +95,16 @@ class ArticleEdtor extends React.Component {
       ? this.props.article[this.props.match.params.articleId].title
       : "Title";
 
+    const redirectToHome = this.state.redirect ? <Redirect to="/" /> : null;
+
     // I'm thinking that if there is content to render beside a placeholder I
     // should append it to the outer div instead of just rendering it plainlylololoipppoooiiiooiikiikjui89ppp0poo9ioiiu776ytr4eeer
     return (
       <div
-        id="innermost-outer-container-div"
-        className="article-editor-container-outer"
+      id="innermost-outer-container-div"
+      className="article-editor-container-outer"
       >
+        {redirectToHome}
         <div className="article-editor-container-inner">
           <div
             className="article-editor-container-title"
