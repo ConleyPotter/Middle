@@ -35,9 +35,47 @@ Middle is a clone of Medium.com, a site used by millions to express their knowle
 * Over the last few days, I have really thrown myself into learning the ins and outs of DOM Manipulation as well as working with HTML, JSON, and other data types which present challenges when trying to compare the two. For to commit to the database, I need to convert the raw HTML into a string, in order to pass it in a JSON back to the rails backend and be stored in the PostGreSQL database. Allowing this to happen seemlessly was no small feat. 
 * At one point I tried to use the DraftJS library to help me achieve what was mentioned above. I later took the pure JS and React approach to accomplish a very similar task. I used the conteneditable attribute on an HTML Div tag so that any text inside the div to allow the text and content to be edited by a user.
 * When the user hits any of the edit buttons (a listener is fired when clicking outside of the div) the inline styling will change, because I use execCommand(styling, [Override Default | {BOOLEAN}], null) to execute a styling command on the document, so that wherever the user is typing, the line style is changed. These two tidbits of code are used in tandem to achieve this affect. 
+<img src="app/assets/images/content-editable-snippet.png" width="800px">
+
+* Though this may seem like complicated stuff, it is achieved elgantly in under 10 lines of code for each button. 
+#### HTML/JSX for the button
+```
+<button
+  onClick={e => this.toolBarButtonClicked(e, "bold")}
+  className="document-editor-buttons"
+>
+```
+#### JavaScript/React code for the buttons:
+```javascript
+  toolBarButtonClicked(e, styling) {
+    e.preventDefault();
+    document.execCommand(styling, false, null);
+    this.focusOnEditable();
+  }
+```
+* The article also updates state, and is able to submit the essay by referencing state, by looking at the inner HTML of the content-editable div. This is done by setting an onBlur event listener on the div itself: 
+```
+ <div
+   className="article-editor-container-body"
+   id="body"
+   contentEditable
+   suppressContentEditableWarning
+   ref={this.contentEditableDiv}
+   onBlur={event => this.update(event, "body")}
+ >
+```
+* That way it knows that it needs to update the portion of state associated with the body of the article as it currently stands, that way the user never has to press a save button (except for the final time they are satisfied with their changes, when they press submit).
+
 ### Article Index
 * I am also quite proud of the way that the articles are displayed on the homepage, as this was my first time ever seeding a database using an Amazon S3 served seed bucket to populate a page with high quality images, always available and served dynamically. 
 * In the future, I play to size the images on the index page in thumbnails so that they are uniform.
-* I'm also pretty proud of the modal: 
+* I'm also pretty proud of the modal. I pulled an image, hosted as a CDN on medium's backend, to put as the background of the modal. There is a slice of state that helps the modal perform teh tasks it needs to perform. Here's the modal: 
 
-<img src="modal" width="400px"><img src="modal-with-errors" width="400px">
+<img src="app/assets/images/modal.png" width="400px"><img src="app/assets/images/modal-with-errors.png" width="400px">
+
+## Extra Resources
+I found the following articles quite handy while developing this site. They range from topics such as React Router, to articles on the contenteditable attribute for HTML tags, to how to best write your own text editor:
+
+* [React Router](https://stackoverflow.com/questions/49738249/react-router-v4-redirecting-on-form-submit)
+* [Content Editable](https://medium.engineering/why-contenteditable-is-terrible-122d8a40e480)
+* [Updating State with Inner HTML](https://stackoverflow.com/questions/22677931/react-js-onchange-event-for-contenteditable)
