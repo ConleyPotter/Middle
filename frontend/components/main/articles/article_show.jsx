@@ -16,7 +16,13 @@ class ArticleShow extends React.Component {
   }
 
   render() {
-      const { title, author_info, coverPhotoUrl } = this.props.article;
+      const { 
+        title,
+        author_info,
+        coverPhotoUrl,
+        dateWritten,
+        byline
+      } = this.props.article;
       let profile_picture, username;
       if (author_info) {
         profile_picture = author_info.profile_picture;
@@ -36,9 +42,15 @@ class ArticleShow extends React.Component {
       <div className="article-show-page-container">
         <div className="article-container">
           <h1 className="article-title">{title}</h1>
+          <h4 className="byline">
+            {byline}
+          </h4>
           <div className="additional-info">
             {avatar}
-            <p className="username">{username}</p>
+            <div className="username-and-date">
+              <p className="username">{username}</p>
+              <p className="date">{dateWritten}</p>
+            </div>
           </div>
           <div className="cover-photo">
             <img src={coverPhotoUrl} />
