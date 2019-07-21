@@ -21,4 +21,6 @@ class Article < ApplicationRecord
     class_name: :User
 
   has_one_attached :cover_photo
+
+  has_many :likes, as: :likeable
 end
