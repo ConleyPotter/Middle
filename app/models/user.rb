@@ -24,6 +24,12 @@ class User < ApplicationRecord
     foreign_key: :author_id,
     class_name: :Article
 
+  has_many :likes,
+    as: :likeable,
+    primary_key: :id,
+    foreign_key: :user_id,
+    class_name: :User
+
   has_one_attached :profile_picture
 
   # FGRIPE
