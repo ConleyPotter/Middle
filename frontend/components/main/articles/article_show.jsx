@@ -29,8 +29,8 @@ class ArticleShow extends React.Component {
         username = author_info.username;
       }
     
-    const avatar = profile_picture === "avatar"
-      ? (
+    const avatar = profile_picture === "avatar" ? 
+      (
         <div className="avatar article-show-avatar">
           <p>{username[0].toUpperCase()}</p>
         </div>

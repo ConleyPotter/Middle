@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_25_114815) do
+ActiveRecord::Schema.define(version: 2019_07_21_200900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,17 @@ ActiveRecord::Schema.define(version: 2019_05_25_114815) do
     t.string "topic_category", null: false
     t.index ["author_id"], name: "index_articles_on_author_id"
     t.index ["id", "author_id"], name: "index_articles_on_id_and_author_id"
+  end
+
+  create_table "claps", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "likeable_type"
+    t.bigint "likeable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["likeable_id", "user_id"], name: "index_claps_on_likeable_id_and_user_id", unique: true
+    t.index ["likeable_type", "likeable_id"], name: "index_claps_on_likeable_type_and_likeable_id"
+    t.index ["user_id"], name: "index_claps_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
