@@ -14,9 +14,9 @@ export const postClapToArticle = clap => {
   });
 };
 
-export const deleteClapFromArticle = articleId => {
+export const deleteClapFromArticle = (articleId, clapId) => {
   return $.ajax({
     method: 'DELETE',
-    url: `api/articles/${articleId}/claps`
+    url: `api/articles/${articleId}/claps/${clapId}`
   });
 };

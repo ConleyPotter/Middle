@@ -38,11 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
   window.getState = store.getState;
   window.store = store.dispatch;
 
-  // Articles Testing
-  window.postClap = ClapsAPIUtil.postClapToArticle;
-  window.fetchClap = ClapsAPIUtil.fetchClapsForArticle;
-  window.deleteClap = ClapsAPIUtil.deleteClapFromArticle;
-
   // React
   ReactDOM.render(<Root store={store} />, root);
 });

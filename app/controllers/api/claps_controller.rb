@@ -11,7 +11,7 @@ class Api::ClapsController < ApplicationController
 
   def create
     @clap = Clap.new(clap_params)
-    @user_who_clapped = User.find_by(params[:user_id])
+    @user_who_clapped = User.find(params[:user_id])
     if @clap.save
       render :show
     else
@@ -20,7 +20,8 @@ class Api::ClapsController < ApplicationController
   end
 
   def destroy
-    @clap = current_user.claps.find_by(article_id: params[:article_id])
+    @clap = Clap.find(params[:id])
+    @user_who_clapped = current_user
     if @clap
       @clap.destroy
       render :show
