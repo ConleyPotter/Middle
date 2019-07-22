@@ -2,8 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from './store/store'
 import Root from './components/root'
-import * as ArticleAPIUtil from './util/article_api_util'
-import * as ArticleActions from './actions/articles/article_actions'
+import * as ClapsAPIUtil from './util/clap_api_util';
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -40,9 +39,10 @@ document.addEventListener('DOMContentLoaded', () => {
   window.store = store.dispatch;
 
   // Articles Testing
-  window.postArticle = ArticleAPIUtil.postArticle
-  window.postArticleAction = ArticleActions.postArticle
+  window.postClap = ClapsAPIUtil.postClapToArticle;
+  window.fetchClap = ClapsAPIUtil.fetchClapsForArticle;
+  window.deleteClap = ClapsAPIUtil.deleteClapFromArticle;
 
   // React
   ReactDOM.render(<Root store={store} />, root);
-})
+});

@@ -1,4 +1,4 @@
-json.extract! clap, :id, :created_at
+json.extract! clap, :id
 
 json.set! :clapper_username, user.username
 

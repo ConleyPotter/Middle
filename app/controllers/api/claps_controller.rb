@@ -1,12 +1,11 @@
 class Api::ClapsController < ApplicationController
   def index
-    if params[:likeable_type] == "Article"
-      article = Article.find_by(params[:likeable_id])
-      if article
-        @claps = article.claps
-      else
-        render json: ['Could not locate the associated article'], status: 400
-      end
+    # how to know that we're coming from an article rather than a comment?
+    article = Article.find(params[:article_id])
+    if article
+      @claps = article.claps
+    else
+      render json: ['Could not locate the associated article'], status: 400
     end
   end
 
@@ -21,10 +20,10 @@ class Api::ClapsController < ApplicationController
   end
 
   def destroy
-    @clap = Clap.find(params[:id])
+    @clap = current_user.claps.find_by(article_id: params[:article_id])
     if @clap
       @clap.destroy
-      render :index
+      render :show
     else
       render json: ['Could not find clap']
     end
@@ -32,6 +31,6 @@ class Api::ClapsController < ApplicationController
 
   private
   def clap_params
-    params.require(:article).permit(:user_id, :likeable_id, :likeable_type)
+    params.require(:clap).permit(:user_id, :likeable_id, :likeable_type)
   end
 end
