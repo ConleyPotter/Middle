@@ -24,7 +24,7 @@ class Api::ClapsController < ApplicationController
     @user_who_clapped = current_user
     if @clap
       @clap.destroy
-      render :show
+      render :index
     else
       render json: ['Could not find clap']
     end
