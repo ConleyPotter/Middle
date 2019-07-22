@@ -24,7 +24,7 @@ class User < ApplicationRecord
     foreign_key: :author_id,
     class_name: :Article
 
-  has_many :likes,
+  has_many :claps,
     as: :likeable,
     primary_key: :id,
     foreign_key: :user_id,

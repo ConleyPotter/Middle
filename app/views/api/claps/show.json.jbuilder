@@ -1,0 +1,1 @@
+json.partial! 'api/claps/clap', clap: @clap, user: @user_who_clapped

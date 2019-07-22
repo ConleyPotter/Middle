@@ -36,7 +36,7 @@ class Api::ArticlesController < ApplicationController
       @article.destroy
       render :index
     else
-      render ['Could not find article']
+      render json: ['Could not find article']
     end
   end
 
