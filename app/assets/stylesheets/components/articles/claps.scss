@@ -1,0 +1,14 @@
+.clap-container {
+    width: 60px;
+    height: 50px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    img {
+        height: 35px;
+        width: 35px;
+    }
+    p {
+        font-size: 14px;
+    }
+}

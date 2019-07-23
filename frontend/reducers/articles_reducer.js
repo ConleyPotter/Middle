@@ -1,7 +1,7 @@
 import { 
   RECEIVE_ARTICLE, 
-  RECEIVE_ARTICLES } 
-  from '../actions/articles/article_actions'
+  RECEIVE_ARTICLES 
+} from '../actions/articles/article_actions';
 
 const articlesReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -9,7 +9,7 @@ const articlesReducer = (state = {}, action) => {
     case RECEIVE_ARTICLE:
       return Object.assign({}, state, {[action.article.id]: action.article})
     case RECEIVE_ARTICLES:
-      return Object.assign({}, state, action.articles)
+      return Object.assign({}, state, action.articles);
     default:
       return state;
   }

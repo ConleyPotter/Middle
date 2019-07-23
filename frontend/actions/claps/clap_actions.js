@@ -4,10 +4,10 @@ export const RECEIVE_CLAPS = 'RECEIVE_CLAPS';
 export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
 
 export const fetchClapsForArticle = articleId => dispatch => {
-  ClapAPIUtil.fetchClapsForArticle(articleId).then(clap => 
+  ClapAPIUtil.fetchClapsForArticle(articleId).then(claps => 
     dispatch({
-      type: RECEIVE_CLAP,
-      clap
+      type: RECEIVE_CLAPS,
+      claps
     })
   );
 };

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_21_200900) do
+ActiveRecord::Schema.define(version: 2019_07_23_124843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,7 +54,6 @@ ActiveRecord::Schema.define(version: 2019_07_21_200900) do
     t.bigint "likeable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["likeable_id", "user_id"], name: "index_claps_on_likeable_id_and_user_id", unique: true
     t.index ["likeable_type", "likeable_id"], name: "index_claps_on_likeable_type_and_likeable_id"
     t.index ["user_id"], name: "index_claps_on_user_id"
   end

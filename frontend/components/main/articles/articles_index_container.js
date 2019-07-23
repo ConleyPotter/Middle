@@ -6,8 +6,8 @@ const msp = (state) => {
   return {
     errors: state.errors.articles,
     articles: Object.values(state.entities.articles),
-  }
-}
+  };
+};
 
 const mdp = (dispatch) => ({
   fetchArticles: () => dispatch(fetchArticles()),

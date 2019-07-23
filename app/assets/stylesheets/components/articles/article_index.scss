@@ -17,6 +17,10 @@
         line-height: 20px;
       }
     }
+    .clap-and-additional-info {
+      display: flex;
+      justify-content: space-between;
+    }
     width: 480px;
     margin-right: 24px;
     font-family: Geneva, Arial, sans-serif;

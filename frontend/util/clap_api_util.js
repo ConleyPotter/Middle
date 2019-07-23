@@ -9,7 +9,7 @@ export const fetchClapsForArticle = articleId => {
 export const postClapToArticle = clap => {
   return $.ajax({
     method: 'POST',
-    url: `api/articles/${clap.article_id}/claps`,
+    url: `api/articles/${clap.likeable_id}/claps`,
     data: { clap }
   });
 };
