@@ -34,7 +34,8 @@
   },
   "scripts": {
     "build:dev": "webpack --watch --mode=development",
-    "postinstall": "webpack"
+    "postinstall": "webpack -p",
+    "prod": "NODE_ENV=production node server.js"
   },
   "repository": {
     "type": "git",
@@ -47,5 +48,7 @@
     "url": "https://github.com/ConleyPotter/Middle/issues"
   },
   "homepage": "https://github.com/ConleyPotter/Middle#readme",
-  "devDependencies": {}
+  "devDependencies": {
+    "express": "^4.17.1"
+  }
 }
