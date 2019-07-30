@@ -33,8 +33,7 @@
     "npm": "6.1.0"
   },
   "scripts": {
-    "build:dev": "webpack --watch --mode=development",
-    "start": "webpack --watch"
+    "build:dev": "webpack --watch --mode=development"
   },
   "repository": {
     "type": "git",
