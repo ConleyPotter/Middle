@@ -34,8 +34,7 @@
   },
   "scripts": {
     "build:dev": "webpack --watch --mode=development",
-    "postinstall": "webpack",
-    "start": "node index.js"
+    "postinstall": "webpack"
   },
   "repository": {
     "type": "git",
