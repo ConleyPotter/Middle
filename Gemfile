@@ -31,6 +31,7 @@ gem 'binding_of_caller'
 gem 'jquery-rails'
 gem 'aws-sdk-s3'
 gem 'font-awesome-rails'
+gem 'rails_12factor', group: :production
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
