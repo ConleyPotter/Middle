@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     end
 
     resource :session, only: [:create, :destroy]
-    resources :articles, defaults: { format: :json } do
+    resources :articles do
       resources :claps, only: [:index, :create, :destroy]
     end
   end

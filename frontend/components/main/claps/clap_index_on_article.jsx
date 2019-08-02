@@ -10,7 +10,8 @@ class ClapsIndexOnArticle extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchClaps(this.props.articleId);
+    const { articleId } = this.props;
+    this.props.fetchClaps(articleId);
   }
 
   toggleActive() {
@@ -25,6 +26,7 @@ class ClapsIndexOnArticle extends React.Component {
   render() {
     const numberOfClaps = this.props.clapCount;
     const active = this.state;
+    const { openModal } = this.props;
     return (
       <div>
         <div className="clap-container">
@@ -33,12 +35,16 @@ class ClapsIndexOnArticle extends React.Component {
             alt="Clap"
             onClick={
               () => {
-                this.props.postClap({
-                  likeable_id: this.props.articleId,
-                  likeable_type: "Article",
-                  user_id: this.props.currentUserId
-                });
-                this.toggleActive();
+                if (this.currentUserId) {
+                  this.props.postClap({
+                    likeable_id: this.props.articleId,
+                    likeable_type: "Article",
+                    user_id: this.props.currentUserId
+                  });
+                  this.toggleActive();
+                } else {
+                  openModal("signup");
+                }
               }
             }
             className={active ? 'active' : null}

@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import ClapIndexOnArticle from './clap_index_on_article';
 import { fetchClapsForArticle, postClapToArticle, deleteClapFromArticle } from '../../../actions/claps/clap_actions';
+import { openModal } from '../../../actions/modal/modal_actions';
 
 const clapCounter = (claps, articleId) => {
   if (claps[articleId]) {
@@ -9,7 +10,7 @@ const clapCounter = (claps, articleId) => {
   } else {
     return 0;
   }
-}
+};
 
 const msp = (state, ownProps) => {
   return {
@@ -21,9 +22,10 @@ const msp = (state, ownProps) => {
 };
 
 const mdp = dispatch => ({
-    postClap: clap => dispatch(postClapToArticle(clap)),
-    deleteClap: (articleId, clapId) => dispatch(deleteClapFromArticle(articleId, clapId)),
-    fetchClaps: articleId => dispatch(fetchClapsForArticle(articleId))
+  postClap: clap => dispatch(postClapToArticle(clap)),
+  deleteClap: (articleId, clapId) => dispatch(deleteClapFromArticle(articleId, clapId)),
+  fetchClaps: articleId => dispatch(fetchClapsForArticle(articleId)),
+  openModal: modal => dispatch(openModal(modal))
 });
 
 export default connect(

@@ -1,6 +1,6 @@
 json.extract! clap, :id, :likeable_id
 
-json.set! :clapper_username, user.username
+# json.set! :clapper_username, user.username
 
 def parse_date(timeObj)
   months = {

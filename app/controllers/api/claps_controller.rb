@@ -2,7 +2,7 @@ class Api::ClapsController < ApplicationController
   def index
     # how to know that we're coming from an article rather than a comment?
     article = Article.find(params[:article_id])
-    @user_who_clapped = current_user
+    # @user_who_clapped = current_user
     if article
       @claps = article.claps
     else
