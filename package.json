@@ -10,7 +10,7 @@
     "draft-js-plugins-editor": "^2.1.1",
     "express": "^4.17.1",
     "file-loader": "^4.1.0",
-    "lodash": "^4.17.14",
+    "lodash": "^4.17.19",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.3",
